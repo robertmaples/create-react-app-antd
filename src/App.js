@@ -1,9 +1,11 @@
 import React from 'react';
 import { Form, Select, InputNumber, DatePicker, Switch, Slider, Button, Typography } from 'antd';
 import './App.css';
+import moment from 'moment';
 
 const { Option } = Select;
 const { Title } = Typography;
+const { RangePicker } = DatePicker;
 
 const App = () => (
   <>
@@ -38,7 +40,14 @@ const App = () => (
         </Select>
       </Form.Item>
       <Form.Item label="日期选择框">
-        <DatePicker />
+        <RangePicker
+          ranges={{
+            Today: [moment(), moment()],
+            "Yesterday & Today": [moment().subtract(24, "hours"), moment()],
+            "Last 7 Days": [moment().subtract(168, "hours"), moment()],
+            "Last 30 Days": [moment().subtract(30, "days"), moment()]
+          }}
+        />
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 8, offset: 8 }}>
